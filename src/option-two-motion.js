@@ -8,7 +8,7 @@ export default function useOptionTwoMotion(root, page) {
     const element = root.current;
     const booking = page === 'home' && element?.querySelector('.o2-booking');
     if (!booking) return;
-    const measure = () => element.style.setProperty('--o2-booking-height', `${booking.offsetHeight}px`);
+    const measure = () => element.style.setProperty('--o2-booking-height', `${booking.getBoundingClientRect().height}px`);
     measure();
     const observer = window.ResizeObserver ? new ResizeObserver(measure) : null;
     observer?.observe(booking);
