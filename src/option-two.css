@@ -33,8 +33,8 @@ body.o2-active{background:#121617;color:#f0eee8;color-scheme:dark}
 .o2-active .booking-popover{--ink:#eceee4;--red:#d9093e;background:#232b28;border-color:#55634f;color:#eceee4;box-shadow:0 18px 70px #0008;color-scheme:dark}.o2-active .booking-popover h3{font-family:Manrope,Arial,sans-serif}.o2-active .popover-heading>span,.o2-active .calendar-month th{color:#a5b09b}.o2-active .calendar-month td>button{color:#eceee4}.o2-active .calendar-month td>button:disabled{color:#5c6955}.o2-active .calendar-month td>button:hover:not(:disabled){background:#45523e;color:#fff}.o2-active .calendar-month td>button.selected,.o2-active .calendar-month td>button.selected:hover{background:#c9103a;color:#fff}.o2-active .calendar-month+.calendar-month:before,.o2-active .popover-done{border-color:#59674e;background-color:transparent}.o2-active .calendar-navigation button,.o2-active .popover-close,.o2-active .guest-picker button{color:#b8c3ac}.o2-active .guest-picker button{border-color:#6e7b61}.o2-active .booking-popover button:focus-visible{outline-color:#ffc5cf}.o2-active .calendar-month td>button:focus-visible{outline-color:#fff}.o2-active .booking-popover .calendar-month h3{font-size:17px;font-weight:400;letter-spacing:0}
 .o2-search{display:flex;align-items:center;border-bottom:1px solid #64735b;margin:14px 22px 20px;gap:12px}.o2-search input{background:transparent;border:0;color:#eef0e4;font-size:14px;width:100%;height:48px;outline:none}.o2-search input::placeholder{color:#a0ae95}.o2-search button{font-size:25px;width:32px;height:40px;color:#bac5ad}.o2-popover-caption{font-size:8px;letter-spacing:.15em;color:#9dac90;padding:0 23px 10px}.o2-result{display:flex;align-items:center;justify-content:space-between;gap:20px;width:100%;text-align:left;padding:12px 23px;min-height:62px}.o2-result.active,.o2-result:hover{background:#323f30}.o2-result strong{font-size:14px;font-weight:400;display:block}.o2-result small{font-size:10px;color:#a0ae93;display:block;margin-top:4px}.o2-result b{font-size:11px;font-weight:400;color:#f47d97}.o2-no-results{font-size:13px;color:#c0c9b7;padding:10px 23px 24px}.o2-active .design-grid-columns.wrap{width:calc(100% - clamp(24px,5.6vw,120px)*2);max-width:1680px;gap:32px}
 /* Entry and scroll choreography: image, type, navigation, then flight strip. */
-.o2-motion [data-o2-reveal]{opacity:0;transform:translateY(35px);transition:opacity var(--o2-reveal) var(--o2-ease),transform var(--o2-reveal) var(--o2-ease);transition-delay:calc(var(--o2-order,0)*180ms)}.o2-motion [data-o2-reveal].o2-visible{opacity:1;transform:none}.o2-motion .o2-hero-image{animation:o2-camera 35s ease-out both;animation-play-state:paused}.o2-motion .o2-in-view .o2-hero-image{animation-play-state:running}.o2-motion.o2-paused .o2-hero-image{animation-play-state:paused}.o2-motion .o2-hero h1>span,.o2-motion .o2-hero-copy>.o2-label,.o2-motion .o2-hero-bottom,.o2-motion .o2-header-home .o2-header-inner{transition:opacity 1.4s var(--o2-ease),transform 1.7s var(--o2-ease)}.o2-motion .o2-hero h1>span{transition-delay:.35s}.o2-motion .o2-hero h1>span+span{transition-delay:.55s}.o2-motion .o2-hero-copy>.o2-label{transition-delay:.2s}.o2-motion .o2-hero-bottom{transition-delay:.85s}.o2-motion .o2-header-home .o2-header-inner{transition-delay:.55s}.o2-entering .o2-hero h1>span,.o2-entering .o2-hero-copy>.o2-label,.o2-entering .o2-hero-bottom{opacity:0;transform:translateY(35px)}.o2-entering .o2-header-home .o2-header-inner{opacity:0;transform:translateY(-14px)}.o2-motion .o2-booking [data-o2-reveal]{transition-delay:.1s}
-@keyframes o2-camera{from{transform:scale(1.015)}to{transform:scale(1.075)}}@keyframes o2-menu-in{from{opacity:0;transform:translateY(-9px)}to{opacity:1;transform:none}}
+.o2-motion [data-o2-reveal]{opacity:0;transform:translateY(35px);transition:opacity var(--o2-reveal) var(--o2-ease),transform var(--o2-reveal) var(--o2-ease);transition-delay:calc(var(--o2-order,0)*180ms)}.o2-motion [data-o2-reveal].o2-visible{opacity:1;transform:none}
+@keyframes o2-camera{from{transform:scale(1.015)}to{transform:scale(1.14)}}@keyframes o2-menu-in{from{opacity:0;transform:translateY(-9px)}to{opacity:1;transform:none}}
 @media(min-width:1900px){.o2-header-inner{height:130px}.o2-hero{padding-bottom:85px}.o2-booking{padding-block:44px}.o2-quick-fields{gap:32px}.o2-hero-bottom p{font-size:16px}.o2-header nav,.o2-header-cta{font-size:13px}.o2-form-panel{padding:48px}.o2-aside-copy{margin-top:280px}.o2-plan-aside{padding:42px}}
 @media(max-width:1199px){.o2-header-inner{gap:30px}.o2-header nav{gap:24px}.o2-header-end{gap:20px}.o2-header-cta{padding-left:20px;gap:20px}.o2-quick-fields{grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr) minmax(155px,1fr) minmax(120px,.8fr);gap:18px}.o2-quick-fields .o2-primary{grid-column:1/-1;min-height:52px;justify-content:space-between;margin:8px 0 0}.o2-flow-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px}.o2-form-panel{padding:30px 26px}.o2-flow-subline{align-items:flex-start;flex-direction:column;gap:25px}.o2-two-fields{gap:22px}.o2-form-action{align-items:flex-start;flex-direction:column;gap:20px}.o2-form-action>span br{display:none}.o2-form-action .o2-primary{width:100%}.o2-plan-aside{padding:27px}.o2-aside-copy h2{font-size:42px}.o2-specialist{padding:25px;gap:20px;grid-template-columns:70px 1fr}.o2-specialist>img{width:70px}.o2-specialist h2{font-size:29px}.o2-summary{padding:27px}.o2-route-line{gap:12px}.o2-route-line strong{font-size:38px}.o2-header nav>.o2-unavailable{font-size:10px}}
 @media(max-width:899px){.o2-header-inner{height:94px}.o2-logo,.o2-logo img{width:66px}.o2-logo img{height:51px}.o2-header nav{margin-left:auto}.o2-header nav>.o2-unavailable,.o2-language{display:none}.o2-header-end{gap:0}.o2-header-cta{font-size:10px}.o2-hero{height:92svh;min-height:700px;padding-bottom:52px}.o2-hero h1{font-size:clamp(70px,9.5vw,92px)}.o2-hero-bottom{align-items:flex-start}.o2-hero-bottom p{font-size:12px}.o2-nav-grid{grid-template-columns:1fr 1fr;gap:30px;padding-block:32px}.o2-nav-grid>img{display:none}.o2-nav-grid>div:first-child{grid-column:1/-1}.o2-nav-grid h2{font-size:27px;margin-top:15px}.o2-nav-grid h2 br{display:none}.o2-nav-grid a{font-size:13px;gap:12px}.o2-navigation{max-height:calc(100svh - 94px)}.o2-quick-fields{grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr);gap:24px}.o2-quick-fields>.custom-date-field{grid-column:1;grid-row:2;padding-left:0;border-left:0}.o2-quick-fields>.passenger-field{grid-column:3;grid-row:2;padding-left:0;border-left:0}.o2-quick-fields .o2-primary{grid-column:1/-1}.o2-airport-trigger strong{font-size:37px}.o2-inline-link{font-size:11px;gap:20px}.o2-footer-grid{gap:35px;grid-template-columns:1.2fr 1fr 1.2fr}.o2-footer-statement{font-size:36px}.o2-footer-grid>div:not(.o2-footer-statement)>span:not(.o2-footer-signature){overflow-wrap:anywhere}.o2-flow-grid{grid-template-columns:1fr}.o2-form-panel{padding:38px}.o2-form-action{flex-direction:row;align-items:center}.o2-form-action .o2-primary{width:auto}.o2-plan-aside{min-height:470px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end}.o2-aside-top{align-self:start}.o2-aside-copy{margin-top:0}.o2-plan-aside>img{object-position:50% 40%}.o2-aside-overlay{background:linear-gradient(90deg,#0b12131a,#0b1213dd 72%),linear-gradient(0deg,#0b1213bb,transparent)}.o2-aside-copy h2{font-size:38px}.o2-enquiry-aside{display:grid;grid-template-columns:1fr 1fr;gap:24px}.o2-specialist{display:block}.o2-specialist>img{display:none}.o2-specialist h2{font-size:36px}.o2-summary{padding:27px}.o2-route-line strong{font-size:32px}.o2-route-line{gap:8px}.o2-flight-line{gap:8px}.o2-flow-intro h1{font-size:60px}.o2-confirmation{gap:35px}.o2-confirmation-copy h2{font-size:35px}}
@@ -119,7 +119,7 @@ html.lenis:has(body.o2-active){scroll-behavior:auto}
 .o2{--o2-media-reveal:2.1s;--o2-copy-reveal:1.45s;--o2-copy-step:140ms}
 .o2-motion .o2-editorial-title,.o2-motion .o2-world-heading,.o2-motion .o2-atmosphere-title{transform:translateY(26px)}
 .o2-motion .o2-editorial-title.o2-visible,.o2-motion .o2-world-heading.o2-visible,.o2-motion .o2-atmosphere-title.o2-visible{transform:none}
-.o2-motion [data-o2-reveal]:not(.o2-visible) [data-o2-parallax]>img{transform:scale(1.07)}
+.o2-motion [data-o2-reveal]{opacity:0;transform:translateY(35px);transition:opacity var(--o2-reveal) var(--o2-ease),transform var(--o2-reveal) var(--o2-ease);transition-delay:calc(var(--o2-order,0)*180ms)}.o2-motion [data-o2-reveal].o2-visible{opacity:1;transform:none}
 .o2-motion .o2-editorial-copy>*,.o2-motion .o2-atmosphere-copy>*{transition:opacity var(--o2-copy-reveal) var(--o2-ease),transform var(--o2-copy-reveal) var(--o2-ease);transition-delay:var(--o2-copy-step)}
 .o2-motion .o2-editorial-copy>*:nth-child(2),.o2-motion .o2-atmosphere-copy>*:nth-child(2){transition-delay:calc(var(--o2-copy-step)*2)}
 .o2-motion .o2-editorial-copy>*:nth-child(3),.o2-motion .o2-atmosphere-copy>*:nth-child(3){transition-delay:calc(var(--o2-copy-step)*3)}
@@ -142,4 +142,55 @@ html.lenis:has(body.o2-active){scroll-behavior:auto}
 }
 @media(prefers-reduced-motion:reduce){
   .o2 [data-o2-parallax]>img,.o2-motion .o2-editorial-copy>*,.o2-motion .o2-atmosphere-copy>*{transform:none!important;opacity:1!important}
+}
+
+/* The complete opening, including the flight strip, fits the first viewport. */
+.o2-page-home{--o2-booking-height:112px;--o2-booking-overlap:44px;--o2-opening-gutter:24px;--o2-intro-title:.45s;--o2-intro-nav:.8s;--o2-intro-booking:1.3s}
+.o2-hero{height:calc(100svh - var(--o2-booking-height) + var(--o2-booking-overlap) - var(--o2-opening-gutter));min-height:0;max-height:none;padding:140px 0 calc(var(--o2-booking-overlap) + 40px);background:#081321}
+.o2-hero h1{font-size:clamp(56px,min(8.6vw,14svh),160px)}
+.o2-hero-bottom{margin-top:clamp(20px,3svh,30px)}
+.o2-booking{margin-top:calc(-1 * var(--o2-booking-overlap))}
+/* One finite entrance; the photograph keeps moving independently afterwards. */
+.o2-motion .o2-hero-image{animation:o2-camera 32s ease-in-out infinite alternate both;animation-play-state:paused;transform-origin:58% 48%}
+.o2-motion .o2-in-view .o2-hero-image{animation-play-state:running}
+.o2-motion.o2-paused .o2-hero-image{animation-play-state:paused}
+.o2-entering .o2-hero-media,.o2-entering .o2-hero h1>span,.o2-entering .o2-hero-bottom,.o2-entering .o2-header-home .o2-header-inner,.o2-entering .o2-booking{opacity:0}
+.o2-arrived .o2-hero-media{animation:o2-intro-image 1.6s var(--o2-ease) both}
+.o2-arrived .o2-hero h1>span{animation:o2-intro-copy 1.8s var(--o2-ease) var(--o2-intro-title) both}
+.o2-arrived .o2-hero h1>span+span{animation-delay:calc(var(--o2-intro-title) + .22s)}
+.o2-arrived .o2-hero-bottom{animation:o2-intro-copy 1.5s var(--o2-ease) 1s both}
+.o2-arrived .o2-header-home .o2-header-inner{animation:o2-intro-nav 1.4s var(--o2-ease) var(--o2-intro-nav) both}
+.o2-arrived .o2-booking{animation:o2-intro-copy 1.5s var(--o2-ease) var(--o2-intro-booking) both}
+.o2-motion.o2-paused.o2-arrived .o2-hero-media,.o2-motion.o2-paused.o2-arrived .o2-hero h1>span,.o2-motion.o2-paused.o2-arrived .o2-hero-bottom,.o2-motion.o2-paused.o2-arrived .o2-header-inner,.o2-motion.o2-paused.o2-arrived .o2-booking{animation-play-state:paused}
+@keyframes o2-intro-image{from{opacity:0}to{opacity:1}}
+@keyframes o2-intro-copy{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes o2-intro-nav{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1199px){.o2-page-home{--o2-booking-height:190px}}
+@media(max-width:899px){
+  .o2-page-home{--o2-booking-height:293px;--o2-booking-overlap:32px;--o2-opening-gutter:20px}
+  .o2-hero{padding-top:116px;padding-bottom:calc(var(--o2-booking-overlap) + 30px)}
+  .o2-hero h1{font-size:clamp(50px,min(9.1vw,12svh),92px)}
+}
+@media(max-width:599px){
+  .o2-page-home{--o2-booking-height:305px;--o2-booking-overlap:28px;--o2-opening-gutter:16px}
+  .o2-hero{padding-top:106px;padding-bottom:calc(var(--o2-booking-overlap) + 26px)}
+  .o2-hero h1{font-size:clamp(40px,11.7vw,70px)}
+  .o2-hero-bottom{margin-top:20px}
+}
+@media(min-width:900px) and (max-width:1199px) and (max-height:760px){
+  .o2-header-inner{height:88px}
+  .o2-hero{padding-top:104px;padding-bottom:calc(var(--o2-booking-overlap) + 26px)}
+  .o2-hero h1{font-size:clamp(48px,min(7vw,10svh),76px)}
+  .o2-hero-bottom{margin-top:20px}
+}
+@media(max-width:599px) and (max-height:700px){
+  .o2-header-inner{height:76px}
+  .o2-hero{padding-top:88px;padding-bottom:calc(var(--o2-booking-overlap) + 20px)}
+  .o2-booking{padding-block:18px}
+  .o2-quick-fields{row-gap:16px}
+  .o2-hero h1{font-size:clamp(38px,10.7vw,46px)}
+  .o2-hero-bottom{margin-top:16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .o2 .o2-hero-media,.o2 .o2-hero h1>span,.o2 .o2-hero-bottom,.o2 .o2-header-inner,.o2 .o2-booking{animation:none!important;opacity:1!important;transform:none!important}
 }
