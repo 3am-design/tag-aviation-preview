@@ -43,8 +43,9 @@ DEMO BEHAVIOUR
 This is an interactive design preview. No enquiry is submitted and no
 booking or payment takes place. Direct enquiry links use an example
 itinerary when no complete itinerary exists. Contact details are not
-saved across reloads. Other business service links open the official
-TAG Aviation website.
+saved across reloads. The homepage starts with Hong Kong to London and
+two guests. Only the booking demo pages are active; other navigation,
+service and contact links are displayed without opening a destination.
 
 The noindex directive is a search-engine request, not access control.
 Use the host's password or login protection if restricted access is

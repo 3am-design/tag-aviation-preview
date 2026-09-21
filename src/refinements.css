@@ -1,0 +1,84 @@
+:root{--tag-motion-fast:180ms;--tag-motion-reveal:680ms;--tag-motion-image:1000ms;--tag-motion-stagger:90ms;--tag-motion-ease:cubic-bezier(.22,1,.36,1)}
+/* The demo keeps its full navigation design; only implemented pages are linked. */
+a[aria-disabled=true],button:disabled{cursor:default}
+.site-header nav button:disabled,.hero-link:disabled,.service-card:disabled,.outline-light:disabled,.other-team:disabled,.footer-main>button:disabled{opacity:1}
+.text-link[aria-disabled=true]:hover,.text-button:disabled:hover,.service-links a[aria-disabled=true]:hover strong{color:inherit}
+.outline-light:disabled:hover{background:transparent}
+.hero-link:disabled:hover .circle-arrow{background:transparent}
+.service-card:disabled:hover img,.service-card[aria-disabled=true]:hover img{transform:none}
+.button:disabled:hover svg{transform:none}
+.nav-item{position:relative}
+.nav-item-wide{position:static}
+.site-header nav .nav-trigger[aria-expanded=true]{color:var(--red)}
+.nav-trigger svg{transition:transform var(--tag-motion-fast) ease}
+.nav-trigger[aria-expanded=true] svg{transform:rotate(180deg)}
+.nav-submenu{position:absolute;top:100%;left:-24px;width:310px;padding:24px;background:#fdfdfa;border-top:2px solid var(--red);box-shadow:0 18px 32px #14282b14}
+.nav-item::after{content:'';position:absolute;top:100%;left:-12px;right:-12px;height:25px}
+.nav-submenu-wide{top:100%;left:0;right:0;width:auto;display:grid;grid-template-columns:1.15fr repeat(4,1fr);gap:28px;padding:34px var(--margin) 38px}
+.nav-intro p{font-family:var(--serif);font-size:32px;line-height:1.05;letter-spacing:-.025em;margin-top:14px}
+.nav-intro .eyebrow{font-size:8px}
+.nav-column h2{font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:0;margin-bottom:16px;line-height:1.6}
+.nav-column ul{list-style:none}
+.nav-column li+li{margin-top:16px}
+.nav-column span{display:block;font-size:13px;line-height:1.6;color:#737d7b;cursor:default}
+.site-header nav .nav-contact:hover{color:inherit}
+/* Give each control a width that fits its actual content. */
+.quick-booking{padding-bottom:28px}
+.quick-fields{grid-template-columns:minmax(170px,1.3fr) 24px minmax(150px,1.3fr) 172px 136px minmax(164px,.9fr);gap:18px}
+.quick-fields .passenger-field{padding-left:17px;border-left:1px solid var(--line)}
+.quick-fields .field-trigger{font-size:14px;gap:9px}
+.quick-fields .passenger-field .field-trigger{gap:7px}
+.passenger-field .field-trigger>svg:last-child{width:12px;height:12px;margin-left:auto}
+.quick-fields .input-icon input{font-size:15px;min-height:44px;text-overflow:ellipsis}
+.quick-fields .quick-submit{gap:20px;min-height:58px}
+.quick-fields .date-field{padding-left:20px}
+.booking-popover.airport-popover small{font-size:13px}
+.guest-picker{gap:12px;font-size:14px}
+.guest-picker>div{gap:10px}
+.guest-picker button{width:44px;height:44px;flex-shrink:0}
+.popover-done{min-height:44px;font-size:12px}
+@media(min-width:960px) and (max-width:1249px){.site-header nav{gap:18px}.quick-fields{grid-template-columns:minmax(180px,1fr) 24px minmax(180px,1fr) 175px 142px}.quick-submit{grid-column:1/-1;justify-content:space-between}.nav-submenu-wide{gap:22px}.nav-intro p{font-size:28px}}
+@media(max-width:959px){
+  .site-header nav.open{max-height:calc(100svh - 100px);overflow:auto;overscroll-behavior:contain}
+  .nav-item{position:relative}.nav-item::after{display:none}
+  .site-header nav .nav-trigger{width:100%;min-height:52px}
+  .nav-submenu,.nav-submenu-wide{position:static;width:auto;box-shadow:none;border-top:0;border-bottom:1px solid var(--line);padding:20px 0 24px;background:transparent}
+  .nav-submenu-wide{grid-template-columns:1fr 1fr;gap:24px}
+  .nav-intro{display:none}.nav-column span{font-size:14px}.nav-column h2{font-size:13px}
+  .quick-fields{grid-template-columns:minmax(0,1fr) 30px minmax(0,1fr);gap:18px}
+  .quick-fields>.airport-field{grid-row:1}.quick-fields>.airport-field:first-child{grid-column:1}.quick-fields>.airport-field:nth-of-type(2){grid-column:3}
+  .quick-fields>.swap-button{grid-column:2;grid-row:1}
+  .quick-fields .date-field{grid-column:1/3;grid-row:2;padding:0;border:0}
+  .quick-fields .passenger-field{grid-column:3;grid-row:2;padding:0;border:0}
+  .quick-fields .passenger-field .field-trigger{max-width:130px}
+  .quick-fields .quick-submit{grid-row:3;grid-column:1/-1}
+}
+@media(max-width:599px){
+  .quick-booking{padding:24px 21px}.quick-fields{grid-template-columns:minmax(0,1fr) 112px;gap:17px 10px}
+  .quick-fields>.airport-field:first-child{grid-column:1/-1;grid-row:1;padding-right:38px}
+  .quick-fields>.airport-field:nth-of-type(2){grid-column:1/-1;grid-row:2;padding-right:38px}
+  .quick-fields>.swap-button{grid-column:2;grid-row:1/3;justify-self:end;width:36px;height:44px;transform:rotate(90deg);margin:0}
+  .quick-fields .date-field{grid-column:1;grid-row:3}.quick-fields .passenger-field{grid-column:2;grid-row:3;padding-left:12px;border-left:1px solid var(--line)}
+  .quick-fields .quick-submit{grid-row:4;min-height:50px}
+  .quick-fields .input-icon input{font-size:16px}.quick-fields .field-trigger{font-size:13px;gap:7px}.quick-fields .field-trigger svg{width:16px;height:16px}
+  .quick-fields .passenger-field .field-trigger{gap:5px}.quick-fields label{font-size:9px}
+  .hero-copy>p:not(.eyebrow){font-size:15px;max-width:300px;line-height:1.7}
+}
+/* Movement follows reading order and leaves the booking controls stable. */
+.hero{overflow:hidden}
+@media(prefers-reduced-motion:no-preference){
+  .tag-motion-ready [data-tag-intro-item]{opacity:0;transform:translateY(18px);transition:opacity var(--tag-motion-reveal) var(--tag-motion-ease),transform var(--tag-motion-reveal) var(--tag-motion-ease);transition-delay:calc(var(--tag-order,0)*var(--tag-motion-stagger))}
+  .tag-motion-ready [data-tag-intro].is-tag-visible [data-tag-intro-item]{opacity:1;transform:none}
+  .tag-motion-ready [data-tag-intro] .hero-image{transform:scale(1.025);transition:transform var(--tag-motion-image) var(--tag-motion-ease)}
+  .tag-motion-ready [data-tag-intro].is-tag-visible .hero-image{transform:none}
+  .tag-motion-ready [data-tag-reveal]{opacity:0;transform:translateY(24px);transition:opacity var(--tag-motion-reveal) var(--tag-motion-ease),transform var(--tag-motion-reveal) var(--tag-motion-ease)}
+  .tag-motion-ready [data-tag-reveal].is-tag-visible{opacity:1;transform:none}
+  .tag-motion-instant,.tag-motion-instant *{transition:none!important}
+  .nav-submenu,.site-header nav.open{animation:tag-panel-enter var(--tag-motion-fast) ease-out both}
+  .booking-popover{animation:tag-popover-enter var(--tag-motion-fast) ease-out}
+}
+@keyframes tag-panel-enter{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
+@keyframes tag-popover-enter{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){[data-tag-intro-item],[data-tag-reveal],.hero-image{opacity:1!important;transform:none!important;transition:none!important}.nav-submenu,.booking-popover,.site-header nav.open{animation:none!important}}
+@media(min-width:960px){.site-header nav{align-self:stretch;align-items:stretch}.nav-item{display:flex;align-items:center}}
+@media(max-width:359px){.quick-fields .date-field{grid-column:1/-1;grid-row:3}.quick-fields .passenger-field{grid-column:1/-1;grid-row:4;border:0;padding:0}.quick-fields .quick-submit{grid-row:5}}
