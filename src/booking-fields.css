@@ -1,0 +1,58 @@
+/* Shared booking controls */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.custom-date-field,.passenger-field{min-width:0}
+.field-trigger{width:100%;min-height:44px;display:flex;align-items:center;gap:10px;padding:0;text-align:left;font-size:14px;font-weight:500;letter-spacing:0;color:var(--ink)}
+.field-trigger svg{flex-shrink:0;color:#798589}
+.field-trigger span{white-space:nowrap}
+.field-empty span{color:#8a918e}
+.field-trigger:focus-visible{outline:0;box-shadow:0 2px 0 var(--ink)}
+.quick-fields .custom-date-field>label{text-transform:uppercase}
+.form-panel .field-trigger{height:52px;border:1px solid #d9ded6;margin-top:8px;padding:12px 14px;background:#fff;font-size:14px}
+.form-panel .field-trigger:focus-visible{border-color:var(--ink);box-shadow:0 0 0 1px var(--ink)}
+.airport-field .input-icon input:focus,.airport-field .input-icon input:focus-visible{outline:none}
+.quick-fields .airport-field .input-icon:focus-within{box-shadow:0 1px 0 #516363}
+.booking-popover{position:fixed;z-index:1000;box-sizing:border-box;background:#fff;color:var(--ink);box-shadow:0 16px 60px #16272d21;border:1px solid #e4e5de;overflow:auto;overscroll-behavior:contain;max-width:calc(100vw - 24px);font-family:var(--sans);isolation:isolate}
+.booking-popover button{border-radius:0}
+.booking-popover button:focus-visible{outline:1px solid #566a68;outline-offset:-3px}
+.booking-popover.airport-popover{min-width:0;padding:18px 0 8px}
+.booking-popover.airport-popover .popover-label{font-size:10px;letter-spacing:.12em;padding:0 24px 13px}
+.booking-popover.airport-popover button{padding:14px 24px;min-height:64px}
+.booking-popover.airport-popover strong{font-size:15px;font-weight:500}
+.booking-popover.airport-popover small{font-size:12px;line-height:1.5;color:#87908b}
+.booking-popover.airport-popover b{font-size:11px;font-weight:500}
+.booking-popover.airport-popover button:hover,.booking-popover.airport-popover button.active{background:#f5f5f0}
+.booking-popover .no-match{font-size:14px;line-height:1.7;padding:10px 24px 20px;margin:0}
+.calendar{padding:12px 24px 20px}
+.popover-heading{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:40px}
+.popover-heading>span{font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:#858c85}
+.popover-close{display:flex;align-items:center;justify-content:center;width:40px;height:40px;color:#89928a;margin-right:-10px}
+.popover-close svg{width:16px;height:16px}
+.calendar-navigation{display:flex;justify-content:space-between;height:44px;margin-bottom:-44px;position:relative;z-index:1;pointer-events:none}
+.calendar-navigation button{width:40px;height:44px;display:grid;place-items:center;color:#8d7f67;pointer-events:auto}
+.calendar-navigation .calendar-prev svg{transform:rotate(180deg)}
+.calendar-navigation button:disabled{opacity:.22;cursor:default}
+.calendar-months{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.calendar-month{min-width:0}
+.calendar-month+.calendar-month{position:relative}
+.calendar-month+.calendar-month::before{content:'';position:absolute;top:14px;bottom:0;left:-15px;width:1px;background:#e3e5dd}
+.calendar-month h3{font-family:var(--sans);font-size:18px;letter-spacing:.025em;font-weight:400;line-height:44px;text-align:center;margin:0 32px 12px;white-space:nowrap}
+.calendar-month table{width:100%;table-layout:fixed;border-collapse:collapse}
+.calendar-month th{font-size:12px;font-weight:400;color:#848981;height:34px;text-align:center;padding:0}
+.calendar-month abbr{text-decoration:none;cursor:default}
+.calendar-month td{height:42px;text-align:center;padding:0}
+.calendar-month td>button{display:block;width:100%;height:42px;min-height:42px;padding:0;font-size:15px;font-weight:400;color:#535b54;transition:background .15s,color .15s}
+.calendar-month td>button:hover:not(:disabled){background:#f1f2eb;color:#263d37}
+.calendar-month td>button:disabled{color:#c6cbc1;opacity:1;cursor:default}
+.calendar-month td>button.selected,.calendar-month td>button.selected:hover{background:var(--red);color:#fff}
+.calendar-month td>button.selected:focus-visible{outline-color:#fff}
+.calendar-single .calendar-months{grid-template-columns:1fr}
+.calendar-single .calendar-month h3{margin-inline:42px}
+.guest-popover{padding:12px 24px 20px}
+.guest-picker{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 0 22px;font-size:15px}
+.guest-picker>div{display:flex;align-items:center;gap:12px}
+.guest-picker button{border:1px solid #dde1d8;width:36px;height:36px;display:grid;place-items:center;color:#7d826f}
+.guest-picker button:disabled{opacity:.3;cursor:default}
+.guest-picker output{min-width:22px;text-align:center;font-size:18px}
+.popover-done{width:100%;padding:13px;border-top:1px solid #e3e5dd;font-size:11px;letter-spacing:.08em;color:var(--ink)}
+@media(max-width:699px){.calendar{padding:9px 18px 16px}.calendar-month h3{font-size:17px}.calendar-month th{font-size:11px}.calendar-month td>button{font-size:15px}.booking-popover.airport-popover button{padding:12px 20px}.guest-picker button{width:40px;height:40px}}
+@media(max-width:599px){.quick-fields .field-trigger{font-size:13px;gap:8px}.quick-fields .field-trigger svg{width:16px;height:16px}.quick-fields .airport-field .input-icon input{font-size:16px}.quick-fields .airport-field .input-icon{min-height:44px}.quick-fields .input-icon svg{flex-shrink:0}.form-panel .field-trigger{height:50px;font-size:13px;padding:10px;gap:8px}}

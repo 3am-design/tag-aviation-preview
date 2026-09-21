@@ -36,3 +36,6 @@
 !/src/preview.css
 !/src/styles.css
 !/vite.config.js
+!/src/BookingFields.jsx
+!/src/booking-fields.css
+!/src/calendar.js
