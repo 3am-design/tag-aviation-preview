@@ -229,3 +229,18 @@ a[aria-disabled=true],button:disabled{cursor:default}
   .nav-submenu.is-open .nav-submenu-inner>div,.nav-submenu.is-open .nav-submenu-inner>section{opacity:1}
   .booking-section .booking-top,.booking-section .quick-fields{opacity:1!important}
 }
+
+/* Intro copy and progress share one compact row on the booking pages. */
+.flow-intro-summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--gutter);align-items:center}
+.flow-intro-summary>p{min-width:0}
+.flow-intro-summary .steps{justify-self:end}
+.confirmation-progress{display:flex;justify-content:center;margin-bottom:36px}
+@media(max-width:959px){
+  .flow-intro-summary{grid-template-columns:minmax(0,1fr);gap:20px}
+  .flow-intro-summary .steps{justify-self:start}
+}
+@media(max-width:599px){
+  .flow-intro-summary{gap:19px}
+  .flow-intro-summary .steps{gap:12px}
+  .confirmation-progress{margin-bottom:28px}
+}
