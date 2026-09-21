@@ -5,7 +5,6 @@ import './styles.css';
 import PreviewIndex from './PreviewIndex.jsx';
 import SiteHeader from './SiteHeader.jsx';
 import SiteFooter from './SiteFooter.jsx';
-import DesignGrid from './DesignGrid.jsx';
 import { useEditorialMotion } from './editorial-motion.js';
 import { DateField, GuestField, FloatingPanel } from './BookingFields.jsx';
 import { readPreviewRoute, previewPath } from './preview-routes.js';
@@ -46,13 +45,14 @@ function readJourney() {
 }
 const teams = { asia: { label: 'Charter Asia', location: 'Hong Kong', email: 'charter.asia@tagaviation.com', phone: '+852 3141 2027', tel: '+85231412027' }, europe: { label: 'Charter Europe', location: 'Farnborough', email: 'charter.europe@tagaviation.com', phone: '+44 1252 377 977', tel: '+441252377977' } };
 function Icon({ name = 'arrow', size = 20, ...props }) {
+  const directional = name === 'arrow' || name === 'upRight';
   const paths = {
     arrow: <><path d="M4 12h15M13 5l7 7-7 7" /></>, upRight: <><path d="M5 19 19 5M5 5h14v14" /></>, chevron: <path d="m6 9 6 6 6-6" />,
     plane: <path d="m22 2-7 20-4-9-9-4 20-7ZM11 13l5-5" />, swap: <><path d="M4 7h16l-4-4M20 17H4l4 4" /></>, plus: <path d="M12 5v14M5 12h14" />, minus: <path d="M5 12h14" />, close: <path d="m5 5 14 14M19 5 5 19" />,
     check: <path d="m5 12 4 4L19 6" />, lock: <><rect x="5" y="10" width="14" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3" /></>, phone: <path d="M8 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-4l-5-2-2 2a14 14 0 0 1-6-6l2-2-2-5Z" />,
     globe: <><circle cx="12" cy="12" r="9" /><ellipse cx="12" cy="12" rx="4" ry="9" /><path d="M3 12h18" /></>, menu: <><path d="M4 8h16M4 16h16" /></>, pin: <><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" /><circle cx="12" cy="10" r="2" /></>, calendar: <><rect x="4" y="5" width="16" height="16" rx="1" /><path d="M8 3v4M16 3v4M4 10h16" /></>, people: <><circle cx="9" cy="8" r="3" /><path d="M3 20v-2a6 6 0 0 1 12 0v2M16 5a3 3 0 0 1 0 6M18 14a5 5 0 0 1 3 4v2" /></>,
   };
-  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name] || paths.arrow}</svg>;
+  return <svg className={directional ? 'tag-action-arrow' : undefined} width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{directional ? paths.arrow : paths[name] || paths.arrow}</svg>;
 }
 function AirportField({ label, value, onChange, required = true }) {
   const id = useId(); const anchor = useRef(null); const input = useRef(null); const [open, setOpen] = useState(false); const [active, setActive] = useState(-1);
@@ -144,7 +144,6 @@ function App() {
     </div>}
     </main>
     <SiteFooter logo={A + images.logo} />
-    <DesignGrid />
   </>;
 }
 

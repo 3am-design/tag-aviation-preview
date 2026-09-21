@@ -1,7 +1,7 @@
-export const optionOnePages = [
-  { key: 'home', number: '01', label: 'Homepage', description: 'Brand introduction and flight-planning entry point.' },
-  { key: 'plan', number: '02', label: 'Plan your flight', description: 'Route, dates, guests and aircraft preferences.' },
-  { key: 'enquiry', number: '03', label: 'Your enquiry', description: 'Contact details, journey summary and confirmation.' },
+export const previewPages = [
+  { key: 'home', label: 'Homepage' },
+  { key: 'plan', label: 'Plan your flight – Your journey' },
+  { key: 'enquiry', label: 'Plan your flight – Your details' },
 ];
 
 export function previewPath(page, option = 1) {

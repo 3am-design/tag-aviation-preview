@@ -1,6 +1,5 @@
 import React, { useEffect, useId, useLayoutEffect, useRef, useState } from 'react';
 import { DateField, FloatingPanel, GuestField } from './BookingFields.jsx';
-import DesignGrid from './DesignGrid.jsx';
 import { SocialIcon } from './SiteFooter.jsx';
 import { previewPath } from './preview-routes.js';
 import { shortDateLabel } from './calendar.js';
@@ -139,5 +138,5 @@ export default function OptionTwo({ page }) {
   const updateLeg = (index, field, value) => setJourney(j => ({ ...j, legs: j.legs.map((leg, i) => i === index ? { ...leg, [field]: value } : leg) }));
   const changeType = type => setJourney(j => ({ ...j, type, legs: type === 'multi-city' && j.legs.length < 2 ? [...j.legs, { from: j.legs[0].to, to: 'GVA', date: addDays(j.legs[0].date, 2), time: '10:00' }] : j.legs, returnDate: j.returnDate || addDays(j.legs[0].date, 3) }));
   const next = e => { e.preventDefault(); const message = validation(journey); setError(message); if (!message) location.hash = path('enquiry'); };
-  return <div ref={root} className={`o2 o2-page-${page}`}><a href="#o2-main" className="o2-skip" onClick={e => { e.preventDefault(); document.getElementById('o2-main')?.focus(); }}>Skip to content</a><Header page={page} /><main id="o2-main" tabIndex={-1}>{page === 'home' ? <Home journey={journey} patch={patch} updateLeg={updateLeg} changeType={changeType} /> : page === 'plan' ? <Plan journey={journey} patch={patch} updateLeg={updateLeg} changeType={changeType} onNext={next} error={error} /> : <Enquiry journey={journey} contact={contact} setContact={setContact} completed={completed} setCompleted={setCompleted} />}</main><Footer /><DesignGrid /></div>;
+  return <div ref={root} className={`o2 o2-page-${page}`}><a href="#o2-main" className="o2-skip" onClick={e => { e.preventDefault(); document.getElementById('o2-main')?.focus(); }}>Skip to content</a><Header page={page} /><main id="o2-main" tabIndex={-1}>{page === 'home' ? <Home journey={journey} patch={patch} updateLeg={updateLeg} changeType={changeType} /> : page === 'plan' ? <Plan journey={journey} patch={patch} updateLeg={updateLeg} changeType={changeType} onNext={next} error={error} /> : <Enquiry journey={journey} contact={contact} setContact={setContact} completed={completed} setCompleted={setCompleted} />}</main><Footer /></div>;
 }

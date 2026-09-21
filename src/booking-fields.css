@@ -1,4 +1,4 @@
-/* Shared booking controls */
+
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .custom-date-field,.passenger-field{min-width:0}
 .field-trigger{width:100%;min-height:44px;display:flex;align-items:center;gap:10px;padding:0;text-align:left;font-size:14px;font-weight:500;letter-spacing:0;color:var(--ink)}

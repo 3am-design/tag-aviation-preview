@@ -1,18 +1,38 @@
 import React from 'react';
-import { optionOnePages, previewPath } from './preview-routes.js';
+import { previewPages, previewPath } from './preview-routes.js';
 import './preview.css';
 
+const directions = [
+  { option: 1, title: 'Editorial approach' },
+  { option: 2, title: 'Cinematic approach' },
+];
+
 export default function PreviewIndex({ notFound = false }) {
+  const pageUrl = (page, option) => new URL(previewPath(page, option), window.location.href).href;
+
   return <main className="review-portal">
-    <header className="review-header"><a href="#/" className="review-wordmark">TAG <span>AVIATION</span></a><span>WEBSITE REVAMP <i>/</i> DESIGN PREVIEW</span><span className="review-for">Prepared for <strong>firmstudio</strong></span></header>
-    {notFound ? <section className="review-intro"><p className="review-kicker">DESIGN PREVIEW</p><h1>This preview is<br /><em>not available yet.</em></h1><a className="review-primary" href="#/">Return to all directions <span aria-hidden="true">↗</span></a></section> : <>
-      <section className="review-intro"><div><p className="review-kicker"><span /> TAG AVIATION · WEBSITE REVAMP</p><h1>A new perspective.<br /><em>Two design directions.</em></h1></div><div className="review-intro-note"><p>Explore the design concepts <br />and the journey behind each one.</p><div><span>ENGLISH</span><span>DESKTOP & MOBILE</span></div></div></section>
-      <section className="review-options" aria-label="Design directions">
-        <article className="review-option"><div className="review-option-heading"><span>OPTION <b>01</b></span><span className="review-status"><i /> Available to preview</span></div><a className="review-cover" href={previewPath('home')} aria-label="Preview Option 1 homepage"><img src={`${import.meta.env.BASE_URL}assets/58dd90f02981a233.webp`} alt="A TAG Aviation private jet" /><div><span>A WORLD OF YOUR OWN</span><h2>Quiet confidence.<br /><em>A personal journey.</em></h2><span className="review-cover-arrow" aria-hidden="true">↗</span></div></a><div className="review-option-body"><p>An editorial approach to private aviation, with an effortless path from inspiration to enquiry.</p><ol className="review-page-links">{optionOnePages.map(item => <li key={item.key}><a href={previewPath(item.key)}><span>{item.number}</span><div><strong>{item.label}</strong><small>{item.description}</small></div><span className="review-link-arrow" aria-hidden="true">↗</span></a></li>)}</ol><a className="review-primary" href={previewPath('home')}>Explore Option 1 <span aria-hidden="true">↗</span></a></div></article>
-        <article className="review-option review-option-two"><div className="review-option-heading"><span>OPTION <b>02</b></span><span className="review-status"><i /> Available to preview</span></div><a className="review-cover" href={previewPath('home', 2)} aria-label="Preview Option 2 homepage"><img src={`${import.meta.env.BASE_URL}assets/o2-sky.webp`} alt="A private view of the horizon above the clouds" /><div><span>A DIFFERENT PERSPECTIVE</span><h2>Your world.<br />Without limits.</h2><span className="review-cover-arrow" aria-hidden="true">↗</span></div></a><div className="review-option-body"><p>A cinematic perspective, with layered imagery, modern typography and a brighter expression of TAG.</p><ol className="review-page-links">{optionOnePages.map(item => <li key={item.key}><a href={previewPath(item.key, 2)}><span>{item.number}</span><div><strong>{item.label}</strong><small>{item.description}</small></div><span className="review-link-arrow" aria-hidden="true">↗</span></a></li>)}</ol><a className="review-primary" href={previewPath('home', 2)}>Explore Option 2 <span aria-hidden="true">↗</span></a></div></article>
-      </section>
-      <aside className="review-guidance"><span>HOW TO EXPLORE</span><p>Open any page directly, or start at the homepage and follow the complete enquiry journey. The concepts adapt to desktop and mobile.</p><p>For design review only.<br />Enquiries are simulated; no booking is made.</p></aside>
-    </>}
-    <footer className="review-footer"><span>TAG AVIATION <i>/</i> WEBSITE DESIGN DIRECTIONS</span><span>Prepared for firmstudio · For review</span></footer>
+    <header className="review-header">
+      <h1>TAG AVIATION WEBSITE REVAMP</h1>
+    </header>
+    {notFound ? <section className="review-not-found">
+      <h2>This page is unavailable.</h2>
+      <a href="#/">Return to the design options</a>
+    </section> : <section className="review-options" aria-label="Design options">
+      {directions.map(({ option, title }) => <article className="review-option" key={option} aria-labelledby={`option-${option}-title`}>
+        <a className="review-cover" href={previewPath('home', option)} aria-label={`Preview Option ${option} homepage`}>
+          <img src={`${import.meta.env.BASE_URL}assets/option-${option}-preview.webp`} alt={`Option ${option} homepage — ${title}`} width="1731" height="1032" />
+        </a>
+        <p className="review-option-number">Option {option}</p>
+        <h2 id={`option-${option}-title`}>{title}</h2>
+        <ul className="review-page-links">
+          {previewPages.map(({ key, label }) => <li key={key}>
+            <a href={previewPath(key, option)}>
+              <span className="review-link-label">{label}</span>
+              <span className="review-link-url">{pageUrl(key, option)}</span>
+            </a>
+          </li>)}
+        </ul>
+      </article>)}
+    </section>}
   </main>;
 }

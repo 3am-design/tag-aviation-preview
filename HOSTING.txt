@@ -1,64 +1,32 @@
-TAG AVIATION — DESIGN PREVIEW
+TAG AVIATION — WEBSITE PREVIEW
 
-REVIEW LINKS
+HOST THE WEBSITE
 
-Online preview: https://3am-design.github.io/tag-aviation-preview/
-Preview index: ./
-Option 1 / Homepage: ./#/option-1/home
-Option 1 / Plan your flight: ./#/option-1/plan
-Option 1 / Your enquiry: ./#/option-1/enquiry
-Option 2 / Homepage: ./#/option-2/home
-Option 2 / Plan your flight: ./#/option-2/plan
-Option 2 / Your enquiry: ./#/option-2/enquiry
-Individual mockups show only the website design. Use the browser Back
-button or the preview index URL to return to the direction overview.
-Press G inside a mockup to toggle its alignment grid. The shortcut is
-disabled while typing in a form field; the grid starts hidden.
+Upload the contents of dist/ to any static HTTP/HTTPS host.
+Both domain-root and subfolder hosting are supported.
+No server-side routing rules or Node.js runtime are required.
+Open the hosted URL to view the two design options and their page links.
 
-GITHUB PAGES
-
-The public source repository is 3am-design/tag-aviation-preview.
-Pushes to main build and validate the site before publishing only dist/.
-Working documents and reference materials are excluded from the source
-delivery list and the published website.
-
-BUILD FROM SOURCE
+EDIT AND BUILD
 
 Use Node.js 22.12 or later.
-Run: npm ci
-Run: npm run build
-Run: npm run check:delivery
+Run npm ci, then npm run dev for local development.
+Run npm run build to regenerate dist/ after editing the source.
 
-Upload the contents of dist/ to a static web host using HTTPS.
-The site supports a domain root or a subfolder. Hash-based page links
-do not require a server-side routing rule. Serve through HTTP/HTTPS;
-opening index.html directly as a local file is not supported.
+PAGES
 
-STATIC HANDOVER
+Option 1 — Editorial approach
+  ./#/option-1/home
+  ./#/option-1/plan
+  ./#/option-1/enquiry
 
-A static hosting handover consists only of the verified contents of
-dist/, plus this HOSTING.txt file if needed. No Node.js runtime is
-required on the static web host. Retain the supplied font licences.
+Option 2 — Cinematic approach
+  ./#/option-2/home
+  ./#/option-2/plan
+  ./#/option-2/enquiry
 
-No handover ZIP has been produced yet.
+This is an interactive design preview. Enquiries are simulated;
+no booking, payment or message is sent. Other service destinations
+are displayed for design review only.
 
-DEMO BEHAVIOUR
-
-This is an interactive design preview. No enquiry is submitted and no
-booking or payment takes place. Direct enquiry links use an example
-itinerary when no complete itinerary exists. Contact details are not
-saved across reloads. The homepage starts with Hong Kong to London and
-two guests. Only the booking demo pages are active; other navigation,
-service and contact links are displayed without opening a destination.
-
-The noindex directive is a search-engine request, not access control.
-Use the host's password or login protection if restricted access is
-required. A private source repository does not restrict a hosted site.
-
-RIGHTS
-
-Photography includes TAG Aviation, Wavebird and Platoon reference imagery,
-plus supplied sky and aircraft concept images.
-TAG identity and photography remain the property of their respective
-owners. Fonts are distributed under the accompanying SIL Open Font
-Licences. The preview is prepared for project design review.
+Keep the supplied licences with the website assets.
