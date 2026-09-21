@@ -1,3 +1,4 @@
+import OptionTwo from './OptionTwo.jsx';
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
@@ -157,7 +158,7 @@ function PreviewRoot() {
   useEffect(() => {
     if (!route.option) document.title = 'TAG Aviation — Design directions';
   }, [route]);
-  return route.option === 1 ? <App /> : <PreviewIndex notFound={route.page === 'not-found'} />;
+  return route.option === 1 ? <App /> : route.option === 2 ? <OptionTwo page={route.page} /> : <PreviewIndex notFound={route.page === 'not-found'} />;
 }
 
 createRoot(document.getElementById('root')).render(<PreviewRoot />);

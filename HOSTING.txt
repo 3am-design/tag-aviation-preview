@@ -7,7 +7,9 @@ Preview index: ./
 Option 1 / Homepage: ./#/option-1/home
 Option 1 / Plan your flight: ./#/option-1/plan
 Option 1 / Your enquiry: ./#/option-1/enquiry
-Option 2 is reserved and has no active preview links yet.
+Option 2 / Homepage: ./#/option-2/home
+Option 2 / Plan your flight: ./#/option-2/plan
+Option 2 / Your enquiry: ./#/option-2/enquiry
 Individual mockups show only the website design. Use the browser Back
 button or the preview index URL to return to the direction overview.
 Press G inside a mockup to toggle its alignment grid. The shortcut is
@@ -55,6 +57,7 @@ required. A private source repository does not restrict a hosted site.
 
 RIGHTS
 
+Photography includes TAG Aviation and Wavebird reference imagery.
 TAG identity and photography remain the property of their respective
 owners. Fonts are distributed under the accompanying SIL Open Font
 Licences. The preview is prepared for project design review.
