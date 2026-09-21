@@ -10,6 +10,8 @@ Option 1 / Your enquiry: ./#/option-1/enquiry
 Option 2 is reserved and has no active preview links yet.
 Individual mockups show only the website design. Use the browser Back
 button or the preview index URL to return to the direction overview.
+Press G inside a mockup to toggle its alignment grid. The shortcut is
+disabled while typing in a form field; the grid starts hidden.
 
 GITHUB PAGES
 

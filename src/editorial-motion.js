@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef } from 'react';
 
-// Once per visit, with visible content as the fallback if motion is unavailable.
+// Reveals run once per visit. The hero drifts forward without a visible loop reset.
 export function useEditorialMotion(page, completed) {
   const visited = useRef(new Set());
   useLayoutEffect(() => {
@@ -8,11 +8,13 @@ export function useEditorialMotion(page, completed) {
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     const intros = [...document.querySelectorAll('[data-tag-intro]')];
     const reveals = [...document.querySelectorAll('[data-tag-reveal]')];
-    let observer, frameOne, frameTwo;
+    const inView = new Set();
+    let observer, heroObserver, frameOne, frameTwo;
     const show = item => item.classList.add('is-tag-visible');
     const showAll = () => { intros.forEach(show); reveals.forEach(show); observer?.disconnect(); };
-    const finishOnPreference = () => { if (media.matches) showAll(); };
-    const finishOnHide = () => { if (document.hidden) intros.forEach(show); };
+    const updateDrift = () => intros.forEach(item => item.classList.toggle('is-tag-drifting', !document.hidden && !media.matches && inView.has(item)));
+    const onPreference = () => { if (media.matches) showAll(); updateDrift(); };
+    const onVisibility = () => { if (document.hidden) intros.forEach(show); updateDrift(); };
     const focus = event => {
       const item = event.target.closest('[data-tag-reveal], [data-tag-intro]');
       if (item) { item.classList.add('tag-motion-instant'); show(item); observer?.unobserve(item); }
@@ -26,21 +28,29 @@ export function useEditorialMotion(page, completed) {
         if ('IntersectionObserver' in window) {
           observer = new IntersectionObserver(entries => entries.forEach(entry => {
             if (entry.isIntersecting) { show(entry.target); observer.unobserve(entry.target); }
-          }), { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });
+          }), { threshold: 0.06, rootMargin: '0px 0px -40px 0px' });
           reveals.forEach(item => observer.observe(item));
         } else reveals.forEach(show);
       }
+      if ('IntersectionObserver' in window) {
+        heroObserver = new IntersectionObserver(entries => {
+          entries.forEach(entry => { if (entry.isIntersecting) inView.add(entry.target); else inView.delete(entry.target); });
+          updateDrift();
+        }, { threshold: 0 });
+        intros.forEach(item => heroObserver.observe(item));
+      } else { intros.forEach(item => inView.add(item)); updateDrift(); }
       visited.current.add(page);
-      media.addEventListener('change', finishOnPreference);
-      document.addEventListener('visibilitychange', finishOnHide);
+      media.addEventListener('change', onPreference);
+      document.addEventListener('visibilitychange', onVisibility);
       document.addEventListener('focusin', focus);
-    } catch { root.classList.remove('tag-motion-ready'); showAll(); }
+    } catch { root.classList.remove('tag-motion-ready'); showAll(); heroObserver?.disconnect(); }
     return () => {
       cancelAnimationFrame(frameOne); cancelAnimationFrame(frameTwo);
-      observer?.disconnect();
-      media.removeEventListener('change', finishOnPreference);
-      document.removeEventListener('visibilitychange', finishOnHide);
+      observer?.disconnect(); heroObserver?.disconnect();
+      media.removeEventListener('change', onPreference);
+      document.removeEventListener('visibilitychange', onVisibility);
       document.removeEventListener('focusin', focus);
+      intros.forEach(item => item.classList.remove('is-tag-drifting'));
       root.classList.remove('tag-motion-ready');
     };
   }, [page, completed]);

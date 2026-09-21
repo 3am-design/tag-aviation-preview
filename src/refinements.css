@@ -1,4 +1,4 @@
-:root{--tag-motion-fast:180ms;--tag-motion-reveal:680ms;--tag-motion-image:1000ms;--tag-motion-stagger:90ms;--tag-motion-ease:cubic-bezier(.22,1,.36,1)}
+:root{--tag-motion-fast:280ms;--tag-motion-reveal:1600ms;--tag-motion-intro:1700ms;--tag-motion-image:90s;--tag-motion-media:2000ms;--tag-motion-stagger:150ms;--tag-motion-ease:cubic-bezier(.25,.25,.3,1);--grid-columns:12;--gutter:32px}
 /* The demo keeps its full navigation design; only implemented pages are linked. */
 a[aria-disabled=true],button:disabled{cursor:default}
 .site-header nav button:disabled,.hero-link:disabled,.service-card:disabled,.outline-light:disabled,.other-team:disabled,.footer-main>button:disabled{opacity:1}
@@ -24,20 +24,20 @@ a[aria-disabled=true],button:disabled{cursor:default}
 .site-header nav .nav-contact:hover{color:inherit}
 /* Give each control a width that fits its actual content. */
 .quick-booking{padding-bottom:28px}
-.quick-fields{grid-template-columns:minmax(170px,1.3fr) 24px minmax(150px,1.3fr) 172px 136px minmax(164px,.9fr);gap:18px}
+.quick-fields{grid-template-columns:minmax(165px,1fr) 24px minmax(150px,1fr) minmax(175px,1fr) minmax(140px,.8fr) minmax(164px,1fr);gap:18px}
 .quick-fields .passenger-field{padding-left:17px;border-left:1px solid var(--line)}
 .quick-fields .field-trigger{font-size:14px;gap:9px}
-.quick-fields .passenger-field .field-trigger{gap:7px}
+.quick-fields .passenger-field .field-trigger{gap:9px;max-width:160px}
 .passenger-field .field-trigger>svg:last-child{width:12px;height:12px;margin-left:auto}
 .quick-fields .input-icon input{font-size:15px;min-height:44px;text-overflow:ellipsis}
 .quick-fields .quick-submit{gap:20px;min-height:58px}
-.quick-fields .date-field{padding-left:20px}
+.quick-fields .date-field{padding-left:22px}
 .booking-popover.airport-popover small{font-size:13px}
 .guest-picker{gap:12px;font-size:14px}
 .guest-picker>div{gap:10px}
 .guest-picker button{width:44px;height:44px;flex-shrink:0}
 .popover-done{min-height:44px;font-size:12px}
-@media(min-width:960px) and (max-width:1249px){.site-header nav{gap:18px}.quick-fields{grid-template-columns:minmax(180px,1fr) 24px minmax(180px,1fr) 175px 142px}.quick-submit{grid-column:1/-1;justify-content:space-between}.nav-submenu-wide{gap:22px}.nav-intro p{font-size:28px}}
+@media(min-width:960px) and (max-width:1249px){.site-header nav{gap:18px}.quick-fields{grid-template-columns:minmax(160px,1fr) 24px minmax(150px,1fr) minmax(175px,1.1fr) minmax(140px,1fr)}.quick-submit{grid-column:1/-1;justify-content:space-between}.nav-submenu-wide{gap:22px}.nav-intro p{font-size:28px}}
 @media(max-width:959px){
   .site-header nav.open{max-height:calc(100svh - 100px);overflow:auto;overscroll-behavior:contain}
   .nav-item{position:relative}.nav-item::after{display:none}
@@ -64,21 +64,64 @@ a[aria-disabled=true],button:disabled{cursor:default}
   .quick-fields .passenger-field .field-trigger{gap:5px}.quick-fields label{font-size:9px}
   .hero-copy>p:not(.eyebrow){font-size:15px;max-width:300px;line-height:1.7}
 }
-/* Movement follows reading order and leaves the booking controls stable. */
-.hero{overflow:hidden}
+/* Longer travel and a gradual curve keep the content from snapping into place. */
+.hero,.experience-band,.experience-image{overflow:hidden}
 @media(prefers-reduced-motion:no-preference){
-  .tag-motion-ready [data-tag-intro-item]{opacity:0;transform:translateY(18px);transition:opacity var(--tag-motion-reveal) var(--tag-motion-ease),transform var(--tag-motion-reveal) var(--tag-motion-ease);transition-delay:calc(var(--tag-order,0)*var(--tag-motion-stagger))}
+  .tag-motion-ready [data-tag-intro-item]{opacity:0;transform:translate3d(0,32px,0);transition:opacity var(--tag-motion-intro) var(--tag-motion-ease),transform var(--tag-motion-intro) var(--tag-motion-ease);transition-delay:calc(var(--tag-order,0)*var(--tag-motion-stagger))}
   .tag-motion-ready [data-tag-intro].is-tag-visible [data-tag-intro-item]{opacity:1;transform:none}
-  .tag-motion-ready [data-tag-intro] .hero-image{transform:scale(1.025);transition:transform var(--tag-motion-image) var(--tag-motion-ease)}
-  .tag-motion-ready [data-tag-intro].is-tag-visible .hero-image{transform:none}
-  .tag-motion-ready [data-tag-reveal]{opacity:0;transform:translateY(24px);transition:opacity var(--tag-motion-reveal) var(--tag-motion-ease),transform var(--tag-motion-reveal) var(--tag-motion-ease)}
+  .tag-motion-ready [data-tag-intro] .hero-image{animation:tag-hero-drift var(--tag-motion-image) linear both;animation-play-state:paused;transform-origin:58% 48%}
+  .tag-motion-ready [data-tag-intro].is-tag-drifting .hero-image{animation-play-state:running}
+  .tag-motion-ready [data-tag-reveal]{opacity:0;transform:translate3d(0,52px,0);transition:opacity var(--tag-motion-reveal) var(--tag-motion-ease),transform var(--tag-motion-reveal) var(--tag-motion-ease);transition-delay:var(--tag-reveal-delay,0ms)}
   .tag-motion-ready [data-tag-reveal].is-tag-visible{opacity:1;transform:none}
+  .tag-motion-ready [data-tag-reveal="media"]{transform:none}
+  .tag-motion-ready [data-tag-reveal="media"] img{transform:scale(1.035);transition:transform var(--tag-motion-media) var(--tag-motion-ease)}
+  .tag-motion-ready [data-tag-reveal="media"].is-tag-visible img{transform:none}
+  .heritage-copy{--tag-reveal-delay:100ms}.heritage-number{--tag-reveal-delay:180ms}
+  .service-card:nth-child(2){--tag-reveal-delay:130ms}.experience-copy{--tag-reveal-delay:120ms}
   .tag-motion-instant,.tag-motion-instant *{transition:none!important}
   .nav-submenu,.site-header nav.open{animation:tag-panel-enter var(--tag-motion-fast) ease-out both}
   .booking-popover{animation:tag-popover-enter var(--tag-motion-fast) ease-out}
 }
+@keyframes tag-hero-drift{from{transform:scale(1)}to{transform:scale(1.2)}}
 @keyframes tag-panel-enter{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:none}}
 @keyframes tag-popover-enter{from{opacity:0}to{opacity:1}}
-@media(prefers-reduced-motion:reduce){[data-tag-intro-item],[data-tag-reveal],.hero-image{opacity:1!important;transform:none!important;transition:none!important}.nav-submenu,.booking-popover,.site-header nav.open{animation:none!important}}
+@media(prefers-reduced-motion:reduce){[data-tag-intro-item],[data-tag-reveal],.hero-image{opacity:1!important;transform:none!important;transition:none!important;animation:none!important}.nav-submenu,.booking-popover,.site-header nav.open{animation:none!important}}
 @media(min-width:960px){.site-header nav{align-self:stretch;align-items:stretch}.nav-item{display:flex;align-items:center}}
 @media(max-width:359px){.quick-fields .date-field{grid-column:1/-1;grid-row:3}.quick-fields .passenger-field{grid-column:1/-1;grid-row:4;border:0;padding:0}.quick-fields .quick-submit{grid-row:5}}
+
+/* Shared column overlay; it never intercepts the page or appears in a printout. */
+.design-grid{position:fixed;inset:0;z-index:2000;pointer-events:none;overflow:hidden}
+.design-grid-columns{height:100%;display:grid;grid-template-columns:repeat(var(--grid-columns),minmax(0,1fr));gap:var(--gutter)}
+.design-grid-columns>span{background:#c6093b0b;border-inline:1px solid #c6093b30}
+.home-contact>div{min-width:0}
+/* The footer uses the same six / three / three column rhythm as the page grid. */
+.footer-main{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:var(--gutter);align-items:center;padding-block:70px 64px}
+.footer-identity{grid-column:span 6;display:flex;align-items:center;gap:clamp(24px,3vw,48px)}
+.footer-identity>a{flex-shrink:0}.footer-identity img{width:96px;height:72px}
+.footer-identity p{font-family:var(--serif);font-size:32px;line-height:1.15;letter-spacing:-.025em}
+.footer-identity p>span{display:block;font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.7;letter-spacing:.015em;margin-top:12px}
+.footer-links{grid-column:span 3;display:flex;flex-direction:column;align-items:flex-start;gap:17px}
+.footer-links a{font-size:12px;line-height:1.6}
+.footer-connect{grid-column:span 3;min-width:0}
+.footer-connect>.eyebrow{font-size:9px;font-weight:500;letter-spacing:.14em}
+.footer-social{display:flex;align-items:center;gap:10px;margin-top:17px;margin-left:-8px}
+.footer-social>span{width:38px;height:38px;display:grid;place-items:center;color:var(--ink);flex-shrink:0}
+.footer-social>span:nth-child(2) svg{width:20px;height:20px}.footer-social>span:last-child svg{width:25px;height:25px}
+.footer-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px;border-top:1px solid #dcded5;padding-block:26px;font-size:10px;line-height:1.7;color:#727c79}
+.footer-bottom>span:last-child{font-size:9px;letter-spacing:.09em}
+@media(max-width:959px){
+  :root{--grid-columns:6;--gutter:24px}.design-grid-columns>span:nth-child(n+7){display:none}
+  .footer-main{grid-template-columns:repeat(6,minmax(0,1fr));row-gap:35px;padding-block:54px 48px}
+  .footer-identity{grid-column:span 6}.footer-identity img{width:84px;height:64px}
+  .footer-social{gap:12px}.footer-links,.footer-connect{grid-column:span 3}
+}
+@media(max-width:599px){
+  :root{--grid-columns:4;--gutter:20px}.design-grid-columns>span:nth-child(n+5){display:none}
+  .footer-main{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:30px;padding-block:46px 40px}
+  .footer-identity{grid-column:span 4;gap:24px}.footer-identity img{width:72px;height:55px}.footer-identity p{font-size:27px}.footer-identity p>span{font-size:10px;margin-top:9px}
+  .footer-links,.footer-connect{grid-column:span 2}.footer-links{gap:14px}.footer-links a{font-size:11px}
+  .footer-connect>.eyebrow{font-size:8px}.footer-social{gap:3px;margin-top:10px;margin-left:-5px}.footer-social>span{width:30px;height:34px}.footer-social svg{width:20px;height:20px}.footer-social>span:last-child svg{width:23px;height:23px}
+  .footer-bottom{align-items:flex-start;flex-direction:column;gap:9px;padding-block:22px;font-size:9px}.footer-bottom>span:last-child{font-size:8px;letter-spacing:.035em}
+}
+@media(max-width:359px){.footer-identity{gap:20px}.footer-identity img{width:62px;height:48px}.footer-identity p{font-size:24px}.footer-links,.footer-connect{grid-column:span 4}.footer-links{flex-direction:row;gap:24px}}
+@media print{.design-grid{display:none!important}}
