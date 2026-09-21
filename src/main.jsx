@@ -1,7 +1,7 @@
 import React, { useEffect, useId, useRef, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import './styles.css';
-import PreviewIndex, { PreviewToolbar } from './PreviewIndex.jsx';
+import PreviewIndex from './PreviewIndex.jsx';
 import { readPreviewRoute, previewPath } from './preview-routes.js';
 
 const A = `${import.meta.env.BASE_URL}assets/`;
@@ -118,7 +118,6 @@ function App() {
   const stepper = <ol className="steps" aria-label="Enquiry progress"><li className={page === 'plan' ? 'current' : 'done'} aria-current={page === 'plan' ? 'step' : undefined}><span>{page === 'plan' ? '01' : <Icon name="check" size={15} />}</span><button onClick={() => go('plan')}>Your journey</button></li><li className={page === 'enquiry' && !completed ? 'current' : completed ? 'done' : ''} aria-current={page === 'enquiry' && !completed ? 'step' : undefined}><span>{completed ? <Icon name="check" size={15} /> : '02'}</span>Your details</li><li className={completed ? 'current' : ''} aria-current={completed ? 'step' : undefined}><span>03</span>Confirmation</li></ol>;
   const errorBox = error && <div className="error-box" role="alert" ref={errorRef} tabIndex={-1}>{error}</div>;
   return <>
-    <PreviewToolbar page={page} />
     <a href="#main" className="skip-link" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>Skip to content</a>
     <div className="utility-bar"><span>SWISS HERITAGE. GLOBAL PERSPECTIVE.</span><div><a href="tel:+85231412027">Charter Asia <span>+852 3141 2027</span></a><span className="utility-divider" /><span className="language"><Icon name="globe" size={13} /> EN</span></div></div>
     <header className="site-header"><a href="#/option-1/home" className="brand" aria-label="TAG Aviation home"><img src={A + images.logo} alt="TAG Aviation" width="90" height="65" /></a><nav aria-label="Main navigation" className={menu ? 'open' : ''}><button onClick={() => goSection('expertise')}>Our expertise <Icon name="chevron" size={13} /></button><button className={page !== 'home' ? 'nav-active' : ''} onClick={() => go('plan')}>Private charter</button><button onClick={() => goSection('why-tag')}>The TAG difference</button><button onClick={() => { setMenu(false); setContactOpen(true); }}>Contact</button></nav><div className="header-actions"><button className="button primary header-cta" onClick={() => go('plan')}>Plan your flight <Icon name="upRight" size={16} /></button><button className="menu-toggle" aria-label={menu ? 'Close menu' : 'Open menu'} aria-expanded={menu} onClick={() => setMenu(!menu)}><Icon name={menu ? 'close' : 'menu'} /></button></div></header>

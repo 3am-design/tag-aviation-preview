@@ -2,14 +2,6 @@ import React from 'react';
 import { optionOnePages, previewPath } from './preview-routes.js';
 import './preview.css';
 
-export function PreviewToolbar({ page }) {
-  return <nav className="preview-toolbar" aria-label="Design preview navigation">
-    <a href="#/" className="preview-back"><span aria-hidden="true">←</span> All directions</a>
-    <span className="preview-option-label">OPTION 01</span>
-    <div>{optionOnePages.map(item => <a key={item.key} href={previewPath(item.key)} aria-current={page === item.key ? 'page' : undefined}>{item.label}</a>)}</div>
-  </nav>;
-}
-
 export default function PreviewIndex({ notFound = false }) {
   return <main className="review-portal">
     <header className="review-header"><a href="#/" className="review-wordmark">TAG <span>AVIATION</span></a><span>WEBSITE REVAMP <i>/</i> DESIGN PREVIEW</span><span className="review-for">Prepared for <strong>firmstudio</strong></span></header>

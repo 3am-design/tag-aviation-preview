@@ -2,11 +2,21 @@ TAG AVIATION — DESIGN PREVIEW
 
 REVIEW LINKS
 
+Online preview: https://3am-design.github.io/tag-aviation-preview/
 Preview index: ./
 Option 1 / Homepage: ./#/option-1/home
 Option 1 / Plan your flight: ./#/option-1/plan
 Option 1 / Your enquiry: ./#/option-1/enquiry
 Option 2 is reserved and has no active preview links yet.
+Individual mockups show only the website design. Use the browser Back
+button or the preview index URL to return to the direction overview.
+
+GITHUB PAGES
+
+The public source repository is 3am-design/tag-aviation-preview.
+Pushes to main build and validate the site before publishing only dist/.
+Working documents and reference materials are excluded from the source
+delivery list and the published website.
 
 BUILD FROM SOURCE
 
