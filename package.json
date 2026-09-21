@@ -10,6 +10,7 @@
     "check:delivery": "node scripts/check-delivery.mjs"
   },
   "dependencies": {
+    "lenis": "1.3.26",
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },

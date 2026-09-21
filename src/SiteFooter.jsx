@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SocialIcon({ name }) {
+export function SocialIcon({ name }) {
   const common = { width: 22, height: 22, viewBox: '0 0 24 24', 'aria-hidden': true };
   if (name === 'LinkedIn') return <svg {...common} fill="currentColor"><circle cx="4.6" cy="5.1" r="1.7" /><path d="M3.1 8.6h3V21h-3zM9.1 8.6H12v1.7c.7-1.2 1.9-2 3.8-2 3.2 0 4.9 1.9 4.9 5.6V21h-3v-6.4c0-2.2-.7-3.3-2.4-3.3-1.8 0-3.2 1.3-3.2 3.5V21h-3z" /></svg>;
   if (name === 'Facebook') return <svg {...common} fill="currentColor"><path d="M13.8 22v-9.1h3.1l.5-3.5h-3.6V7.2c0-1 .3-1.7 1.8-1.7h1.9V2.4c-.9-.2-1.9-.3-2.8-.3-2.8 0-4.8 1.7-4.8 4.9v2.4H7v3.5h2.9V22z" /></svg>;

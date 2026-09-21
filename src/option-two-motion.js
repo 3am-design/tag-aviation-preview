@@ -1,6 +1,46 @@
 import { useLayoutEffect } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 
 export default function useOptionTwoMotion(root, page) {
+  useLayoutEffect(() => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const coarse = window.matchMedia('(pointer: coarse)');
+    let scroll;
+    const settle = () => scroll?.scrollTo(window.scrollY, { immediate: true });
+    const keyboard = event => {
+      if (['Tab', 'ArrowDown', 'ArrowUp', 'PageDown', 'PageUp', 'Home', 'End', ' '].includes(event.key)) settle();
+    };
+    const sync = () => {
+      scroll?.destroy();
+      scroll = undefined;
+      if (reduce.matches || coarse.matches || document.hidden) return;
+      scroll = new Lenis({
+        autoRaf: true, smoothWheel: true, syncTouch: false,
+        lerp: .085, wheelMultiplier: .9, stopInertiaOnNavigate: true,
+        prevent: node => node.matches('.booking-popover, .o2-navigation, textarea, select, [data-lenis-prevent]'),
+        virtualScroll: ({ event }) => !event.ctrlKey && !event.shiftKey,
+      });
+    };
+    sync();
+    reduce.addEventListener('change', sync);
+    coarse.addEventListener('change', sync);
+    document.addEventListener('visibilitychange', sync);
+    window.addEventListener('keydown', keyboard, true);
+    window.addEventListener('hashchange', settle);
+    document.addEventListener('focusin', settle, true);
+    document.addEventListener('pointerdown', settle, true);
+    return () => {
+      scroll?.destroy();
+      reduce.removeEventListener('change', sync);
+      coarse.removeEventListener('change', sync);
+      document.removeEventListener('visibilitychange', sync);
+      window.removeEventListener('keydown', keyboard, true);
+      window.removeEventListener('hashchange', settle);
+      document.removeEventListener('focusin', settle, true);
+      document.removeEventListener('pointerdown', settle, true);
+    };
+  }, [page]);
   useLayoutEffect(() => {
     const element = root.current;
     if (!element) return;
