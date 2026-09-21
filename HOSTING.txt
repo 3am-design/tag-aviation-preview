@@ -57,7 +57,7 @@ required. A private source repository does not restrict a hosted site.
 
 RIGHTS
 
-Photography includes TAG Aviation and Wavebird reference imagery.
+Photography includes TAG Aviation, Wavebird and Platoon reference imagery.
 TAG identity and photography remain the property of their respective
 owners. Fonts are distributed under the accompanying SIL Open Font
 Licences. The preview is prepared for project design review.
