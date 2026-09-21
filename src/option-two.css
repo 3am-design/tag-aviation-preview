@@ -220,18 +220,18 @@ html.lenis:has(body.o2-active){scroll-behavior:auto}
 /* Keep the open navigation surface flat; animate the contents, not a second panel. */
 .o2-navigation{background:#3c4952;box-shadow:none;border-bottom:0;animation:none}
 .o2-nav-grid{animation:o2-menu-in .65s var(--o2-ease) both}
-/* Preview-only destinations keep their hover treatment without navigating. */
+/* Text-only hover cues for navigation and preview-only destinations. */
 .o2 .o2-unavailable,.o2-service-row,.o2-socials>span,.o2-language{cursor:pointer}
-.o2-header :is(.o2-menu-button,.o2-unavailable,.o2-header-cta,.o2-nav-grid a,.o2-language),.o2-service-row,.o2-socials>span{position:relative;isolation:isolate}
-.o2-header :is(.o2-menu-button,.o2-unavailable,.o2-header-cta,.o2-nav-grid a,.o2-language)::before,.o2-service-row::before,.o2-socials>span::before{content:'';position:absolute;inset:-5px -10px;z-index:-1;pointer-events:none;background:#ffffff0f;transform:scaleX(0);transform-origin:right;transition:transform .65s var(--o2-ease)}
+.o2-header :is(.o2-unavailable,.o2-header-cta,.o2-nav-grid a,.o2-language),.o2-socials>span,.o2-footer-grid .o2-unavailable{position:relative}
 .o2-header nav>.o2-unavailable{padding-block:12px}
-.o2-header .o2-header-cta::before{inset:3px -12px 3px 12px}
-.o2-service-row::before{inset:0 -14px;background:#3c49520a}
-.o2-socials>span::before{inset:-4px;border-radius:50%;background:#ffffff1a}
-.o2-footer-grid .o2-unavailable{position:relative;width:fit-content}
-.o2-footer-grid .o2-unavailable::after{content:'';position:absolute;inset:auto 0 3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .65s var(--o2-ease)}
-.o2-header :is(.o2-menu-button,.o2-header-cta,.o2-nav-grid a):focus-visible::before{transform:scaleX(1);transform-origin:left}
+.o2-nav-grid>div>.o2-unavailable,.o2-nav-grid a,.o2-footer-grid .o2-unavailable{width:fit-content;max-width:100%}
+.o2-header :is(.o2-unavailable,.o2-header-cta,.o2-nav-grid a,.o2-language)::after,.o2-socials>span::after,.o2-footer-grid .o2-unavailable::after{content:'';position:absolute;bottom:4px;left:0;right:0;height:1px;pointer-events:none;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .55s var(--o2-ease)}
+.o2-header .o2-header-cta::after{left:28px;right:49px}
+.o2-header .o2-nav-grid :is(.o2-unavailable,a)::after{bottom:-5px}
+.o2-header .o2-nav-grid a::after{right:48px}
+.o2-header .o2-language::after,.o2-socials>span::after{bottom:-4px}
+.o2-footer-grid .o2-unavailable::after{bottom:3px}
+.o2-header :is(.o2-header-cta,.o2-nav-grid a):focus-visible::after{transform:scaleX(1);transform-origin:left}
 @media(hover:hover) and (pointer:fine){
-  .o2-header :is(.o2-menu-button,.o2-unavailable,.o2-header-cta,.o2-nav-grid a,.o2-language):hover::before,.o2-service-row:hover::before,.o2-socials>span:hover::before{transform:scaleX(1);transform-origin:left}
-  .o2-footer-grid .o2-unavailable:hover::after{transform:scaleX(1);transform-origin:left}
+  .o2-header :is(.o2-unavailable,.o2-header-cta,.o2-nav-grid a,.o2-language):hover::after,.o2-socials>span:hover::after,.o2-footer-grid .o2-unavailable:hover::after{transform:scaleX(1);transform-origin:left}
 }
