@@ -1,0 +1,19 @@
+{
+  "name": "tag-aviation-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5176",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 5176",
+    "check:delivery": "node scripts/check-delivery.mjs"
+  },
+  "dependencies": {
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "vite": "^7.1.7"
+  }
+}

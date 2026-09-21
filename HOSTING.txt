@@ -1,0 +1,47 @@
+TAG AVIATION — DESIGN PREVIEW
+
+REVIEW LINKS
+
+Preview index: ./
+Option 1 / Homepage: ./#/option-1/home
+Option 1 / Plan your flight: ./#/option-1/plan
+Option 1 / Your enquiry: ./#/option-1/enquiry
+Option 2 is reserved and has no active preview links yet.
+
+BUILD FROM SOURCE
+
+Use Node.js 22.12 or later.
+Run: npm ci
+Run: npm run build
+Run: npm run check:delivery
+
+Upload the contents of dist/ to a static web host using HTTPS.
+The site supports a domain root or a subfolder. Hash-based page links
+do not require a server-side routing rule. Serve through HTTP/HTTPS;
+opening index.html directly as a local file is not supported.
+
+STATIC HANDOVER
+
+A static hosting handover consists only of the verified contents of
+dist/, plus this HOSTING.txt file if needed. No Node.js runtime is
+required on the static web host. Retain the supplied font licences.
+
+No handover ZIP has been produced yet.
+
+DEMO BEHAVIOUR
+
+This is an interactive design preview. No enquiry is submitted and no
+booking or payment takes place. Direct enquiry links use an example
+itinerary when no complete itinerary exists. Contact details are not
+saved across reloads. Other business service links open the official
+TAG Aviation website.
+
+The noindex directive is a search-engine request, not access control.
+Use the host's password or login protection if restricted access is
+required. A private source repository does not restrict a hosted site.
+
+RIGHTS
+
+TAG identity and photography remain the property of their respective
+owners. Fonts are distributed under the accompanying SIL Open Font
+Licences. The preview is prepared for project design review.
