@@ -9,7 +9,7 @@ function SocialIcon({ name }) {
 }
 export default function SiteFooter({ logo }) {
   return <footer className="site-footer">
-    <div className="footer-main wrap">
+    <div className="footer-main wrap" data-tag-sequence>
       <div className="footer-identity" data-tag-reveal="footer"><a href="#/option-1/home" aria-label="TAG Aviation home"><img src={logo} width="96" height="72" alt="TAG Aviation" /></a><p>A world of your own.<span>Swiss heritage. Since 1966.</span></p></div>
       <div className="footer-connect" data-tag-reveal="footer"><span className="eyebrow">CONNECT WITH TAG</span><div className="footer-social" aria-label="Social media">{['LinkedIn', 'Facebook', 'Instagram', 'WeChat'].map(name => <span key={name} role="link" aria-disabled="true" aria-label={name} title={name}><SocialIcon name={name} /></span>)}</div></div>
     </div>
