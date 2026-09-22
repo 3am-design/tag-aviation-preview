@@ -123,7 +123,13 @@ function App() {
   const errorBox = error && <div className="error-box" role="alert" ref={errorRef} tabIndex={-1}>{error}</div>;
   return <>
     <a href="#main" className="skip-link" onClick={e => { e.preventDefault(); document.getElementById('main')?.focus(); }}>Skip to content</a>
-    <div className="utility-bar" data-tag-intro="utility"><span data-tag-intro-item>SWISS HERITAGE. GLOBAL PERSPECTIVE.</span><div data-tag-intro-item><a role="link" aria-disabled="true">Charter Asia <span>+852 3141 2027</span></a><span className="utility-divider" /><span className="language"><Icon name="globe" size={13} /> EN</span></div></div>
+    <div className="utility-bar" data-tag-intro="utility">
+      <span data-tag-intro-item>SWISS HERITAGE. GLOBAL PERSPECTIVE.</span>
+      <div className="utility-contacts" data-tag-intro-item>
+        <div className="utility-office"><button className="utility-location" type="button" disabled><Icon name="pin" size={13} />Hong Kong<Icon name="chevron" size={11} /></button><a role="link" aria-disabled="true">+852 3141 2027</a></div>
+        <div className="utility-links"><a className="utility-news" role="link" aria-disabled="true">News</a><span className="language"><Icon name="globe" size={13} /> EN</span></div>
+      </div>
+    </div>
     <SiteHeader logo={A + images.logo} page={page} onPlan={() => go('plan')} />
     <main id="main" tabIndex={-1}>
     {page === 'home' ? <>

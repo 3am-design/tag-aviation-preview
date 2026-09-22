@@ -10,7 +10,7 @@ const sequence = {
   home: {
     // Three reading beats: banner copy, navigation, then the booking invitation.
     hero: [180, 400, 660, 1060, 1410],
-    header: [2680, 2850, 2940, 3030, 3120, 3220],
+    header: [2680, 2800, 2860, 2920, 2980, 3040, 3100, 3160, 3190, 3220],
     utility: [2650, 2950],
     bar: 2440, barDuration: homeBarDuration,
     headerSurface: 2520, headerSurfaceDuration: homeMenuDuration,

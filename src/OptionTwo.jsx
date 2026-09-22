@@ -47,23 +47,58 @@ function Mark() { return <span className="o2-mark" aria-hidden="true"><i /><i />
 function Label({ children }) { return <p className="o2-label">{children}</p>; }
 function Reveal({ as: Tag = 'div', children, className = '', order = 0, ...props }) { return <Tag data-o2-reveal className={className} style={{ '--o2-order': order }} {...props}>{children}</Tag>; }
 function Primary({ children, href, onClick, type = 'button', className = '' }) {
-  return href ? <a className={`o2-primary ${className}`} href={href}><span>{children}</span><Arrow /></a> : <button type={type} className={`o2-primary ${className}`} onClick={onClick}><span>{children}</span><Arrow /></button>;
+  return href ? <a className={`o2-primary ${className}`} href={href}><span>{children}</span><Arrow diagonal /></a> : <button type={type} className={`o2-primary ${className}`} onClick={onClick}><span>{children}</span><Arrow diagonal /></button>;
 }
 function Disabled({ children }) { return <span className="o2-unavailable" aria-disabled="true">{children}</span>; }
 function Header({ page }) {
   const [open, setOpen] = useState(false);
-  const toggle = useRef(null), panel = useRef(null);
-  useEffect(() => setOpen(false), [page]);
+  const toggle = useRef(null), panel = useRef(null), closeTimer = useRef(null);
+  const cancelClose = () => { window.clearTimeout(closeTimer.current); closeTimer.current = null; };
+  const closeMenu = () => { cancelClose(); setOpen(false); };
+  const openOnHover = event => {
+    if (event.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      cancelClose(); setOpen(true);
+    }
+  };
+  const leaveHeader = event => {
+    if (event.pointerType !== 'mouse' || panel.current?.contains(document.activeElement)) return;
+    cancelClose(); closeTimer.current = window.setTimeout(() => setOpen(false), 160);
+  };
+  const toggleMenu = event => {
+    cancelClose();
+    if (event.nativeEvent.pointerType === 'mouse' && window.matchMedia('(hover: hover) and (pointer: fine)').matches) setOpen(true);
+    else setOpen(value => !value);
+  };
+  useEffect(() => { cancelClose(); setOpen(false); }, [page]);
+  useEffect(() => () => window.clearTimeout(closeTimer.current), []);
   useEffect(() => {
     if (!open) return;
-    const close = e => { if (e.key === 'Escape') { setOpen(false); toggle.current?.focus(); } };
-    const outside = e => { if (!panel.current?.contains(e.target) && !toggle.current?.contains(e.target)) setOpen(false); };
+    const close = e => { if (e.key === 'Escape') { closeMenu(); toggle.current?.focus({ preventScroll: true }); } };
+    const outside = e => { if (!panel.current?.contains(e.target) && !toggle.current?.contains(e.target)) closeMenu(); };
     document.addEventListener('keydown', close); document.addEventListener('pointerdown', outside);
     return () => { document.removeEventListener('keydown', close); document.removeEventListener('pointerdown', outside); };
   }, [open]);
-  return <header className={`o2-header ${page === 'home' ? 'o2-header-home' : ''} ${open ? 'o2-menu-open' : ''}`}>
-    <div className="o2-header-inner o2-wrap"><a href={path('home')} className="o2-logo" aria-label="TAG Aviation home"><img src={asset('74f2e2ff4c71dadb.svg')} alt="TAG Aviation" width="82" height="63" /></a><nav aria-label="Main navigation"><button ref={toggle} className="o2-menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="o2-navigation">Our world <svg className={open ? 'o2-toggle is-open' : 'o2-toggle'} width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg></button><Disabled>Private charter</Disabled><Disabled>The TAG difference</Disabled></nav><div className="o2-header-end"><span className="o2-language">EN</span><a className="o2-header-cta" href={path('plan')}>Plan your flight <Arrow diagonal /></a></div></div>
-    {open && <div ref={panel} id="o2-navigation" className="o2-navigation"><div className="o2-wrap o2-nav-grid"><div><Label>THE WORLD OF TAG</Label><h2>Consider every<br /> possibility.</h2></div><div><Label>OUR EXPERTISE</Label><Disabled>Aircraft management</Disabled><Disabled>Maintenance</Disabled><Disabled>FBO handling</Disabled><Disabled>Global training</Disabled></div><div><Label>YOUR NEXT CHAPTER</Label><a href={path('plan')}>Plan your flight <Arrow diagonal /></a><Disabled>The TAG difference</Disabled><Disabled>Contact</Disabled></div><img src={asset('o2-flight.webp')} alt="Private aircraft at dusk" /></div></div>}
+  return <header className={`o2-header ${page === 'home' ? 'o2-header-home' : ''} ${open ? 'o2-menu-open' : ''}`} onPointerEnter={cancelClose} onPointerLeave={leaveHeader} onBlur={event => { if (!event.currentTarget.contains(event.relatedTarget)) closeMenu(); }}>
+    <div className="o2-header-inner o2-wrap">
+      <a href={path('home')} className="o2-logo" aria-label="TAG Aviation home"><img src={asset('74f2e2ff4c71dadb.svg')} alt="TAG Aviation" width="82" height="63" /></a>
+      <nav aria-label="Main navigation">
+        <button ref={toggle} className="o2-menu-button" onPointerEnter={openOnHover} onClick={toggleMenu} aria-expanded={open} aria-controls="o2-navigation"><span className="o2-nav-label">Core business</span><svg className={open ? 'o2-toggle is-open' : 'o2-toggle'} width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.25" aria-hidden="true"><path d="m3 6 5 5 5-5" /></svg></button>
+        <Disabled><span className="o2-nav-label">About the TAG</span></Disabled>
+        <Disabled><span className="o2-nav-label">Contact</span></Disabled>
+      </nav>
+      <div className="o2-header-end">
+        <div className="o2-header-tools">
+          <span className="o2-language"><span className="o2-nav-label">EN</span></span>
+          <button type="button" className="o2-icon-control" aria-label="Search" aria-disabled="true"><img src={asset('o2-search.svg')} alt="" width="14" height="14" /></button>
+        </div>
+        <a className="o2-header-cta o2-flight-control" href={path('plan')} aria-label="Plan your flight"><span className="o2-nav-label">Plan your flight</span><img src={asset('o2-plane.svg')} alt="" width="19.2" height="19.2" /></a>
+      </div>
+    </div>
+    <div ref={panel} id="o2-navigation" className="o2-navigation" aria-hidden={!open} inert={!open}><div className="o2-wrap o2-nav-grid">
+      <div className="o2-nav-intro"><Label>THE WORLD OF TAG</Label><h2>Consider every<br /> possibility.</h2><div className="o2-nav-secondary"><a href={path('plan')}><span className="o2-nav-label">Plan your flight</span><Arrow diagonal /></a><Disabled><span className="o2-nav-label">Careers</span></Disabled></div></div>
+      <div className="o2-nav-business"><Label>OUR EXPERTISE</Label><div className="o2-nav-business-list">{['Aircraft management', 'Private charter', 'Maintenance', 'FBO handling', 'Global training'].map(name => <Disabled key={name}><span className="o2-nav-label">{name}</span></Disabled>)}</div></div>
+      <img src={asset('o2-flight.webp')} alt="Private aircraft at dusk" />
+    </div></div>
   </header>;
 }
 function AirportPicker({ label, value, onChange }) {
