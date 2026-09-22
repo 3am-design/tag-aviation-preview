@@ -8,7 +8,6 @@
 !/.gitattributes
 !/.github/workflows/deploy.yml
 !/.gitignore
-!/HOSTING.txt
 !/index.html
 !/package-lock.json
 !/package.json

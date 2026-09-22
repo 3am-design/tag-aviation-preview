@@ -19,14 +19,14 @@ export default function PreviewIndex({ notFound = false }) {
       <a href="#/">Return to the design options</a>
     </section> : <section className="review-options" aria-label="Design options">
       {directions.map(({ option, title }) => <article className="review-option" key={option} aria-labelledby={`option-${option}-title`}>
-        <a className="review-cover" href={previewPath('home', option)} aria-label={`Preview Option ${option} homepage`}>
+        <a className="review-cover" href={previewPath('home', option)} target="_blank" rel="noopener noreferrer" aria-label={`Preview Option ${option} homepage (opens in a new tab)`}>
           <img src={`${import.meta.env.BASE_URL}assets/option-${option}-preview.webp`} alt={`Option ${option} homepage — ${title}`} width="1731" height="1032" />
         </a>
         <p className="review-option-number">Option {option}</p>
         <h2 id={`option-${option}-title`}>{title}</h2>
         <ul className="review-page-links">
           {previewPages.map(({ key, label }) => <li key={key}>
-            <a href={previewPath(key, option)}>
+            <a href={previewPath(key, option)} target="_blank" rel="noopener noreferrer" aria-label={`${label}, Option ${option} (opens in a new tab)`}>
               <span className="review-link-label">{label}</span>
               <span className="review-link-url">{pageUrl(key, option)}</span>
             </a>
